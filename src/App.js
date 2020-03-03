@@ -34,8 +34,18 @@ function App() {
         imgExtension={[".jpg", ".gif", ".png", ".gif"]}
         maxFileSize={5242880}
       />
+      {generating ? (
+        <div className="loading">
+          {uploadedImages.length > 1
+            ? "Generating your emojis..."
+            : "Generating your emoji..."}
+        </div>
+      ) : null}
+      {errorMessage.length ? (
+        <div className="error-message">{errorMessage}</div>
+      ) : null}
       <List>
-        {uploadedImages.length
+        {uploadedImages.length && !generating
           ? uploadedImages.map(image => {
               return (
                 <ListItem button className="list-item" key={image}>
@@ -63,16 +73,6 @@ function App() {
         >
           {uploadedImages.length > 1 ? "Generate Emojis" : "Generate Emoji"}
         </Button>
-      ) : null}
-      {generating ? (
-        <div className="loading">
-          {uploadedImages.length > 1
-            ? "Generating your emojis..."
-            : "Generating your emoji..."}
-        </div>
-      ) : null}
-      {errorMessage.length ? (
-        <div className="error-message">{errorMessage}</div>
       ) : null}
       {generatedEmojis.length
         ? generatedEmojis.map(emoji => (
