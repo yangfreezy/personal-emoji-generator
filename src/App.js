@@ -5,6 +5,8 @@ import { Button, List, ListItem } from "@material-ui/core";
 
 import { generateEmojis, getMirrorAPIToken } from "./api/mirrorAPI.js";
 
+import { Text, TemporaryMessage, Layout } from "./Components";
+
 import "./styles.css";
 
 function App() {
@@ -26,7 +28,7 @@ function App() {
 
   return (
     <div className="App">
-      <div className="title"> Emoji Generator </div>
+      <Text className="title" value="Emoji Generator" />
       <ImageUploader
         withIcon={true}
         buttonText="Upload"
@@ -35,14 +37,16 @@ function App() {
         maxFileSize={5242880}
       />
       {generating ? (
-        <div className="loading">
+        <TemporaryMessage className="loading">
           {uploadedImages.length > 1
             ? "Generating your emojis..."
             : "Generating your emoji..."}
-        </div>
+        </TemporaryMessage>
       ) : null}
       {errorMessage.length ? (
-        <div className="error-message">{errorMessage}</div>
+        <TemporaryMessage className="error-message">
+          {errorMessage}
+        </TemporaryMessage>
       ) : null}
       <List>
         {uploadedImages.length && !generating
@@ -76,10 +80,10 @@ function App() {
       ) : null}
       {generatedEmojis.length
         ? generatedEmojis.map(emoji => (
-            <div className="emoji-card">
-              <div className="emoji-name"> {emoji.name}</div>
+            <Layout className="emoji-card">
+              <Text className="emoji-name" value={emoji.name} />
               <img className="emoji-image" src={emoji.url} alt={emoji.id} />
-            </div>
+            </Layout>
           ))
         : null}
     </div>
