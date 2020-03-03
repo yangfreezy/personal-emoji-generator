@@ -1,6 +1,6 @@
 import axios from "axios";
 
-async function getToken(setPictureToken, setTokenSaved) {
+async function getToken(setPictureToken) {
   let token;
   try {
     const { data } = await axios("https://mirror-ai.p.rapidapi.com/token", {
@@ -12,7 +12,6 @@ async function getToken(setPictureToken, setTokenSaved) {
     token = data.token;
     localStorage.setItem("pictureToken", token);
     setPictureToken(token);
-    setTokenSaved(true);
     return token;
   } catch (err) {
     console.error(err);
@@ -22,7 +21,6 @@ async function getToken(setPictureToken, setTokenSaved) {
 async function generateEmojis(
   setGenerating,
   setUploadedPictures,
-  setUploadedPictureNames,
   setGeneratedEmojis,
   setErrorMessage,
   uploadedPictures,
@@ -67,7 +65,6 @@ async function generateEmojis(
   }
   setGenerating(false);
   setUploadedPictures([]);
-  setUploadedPictureNames([]);
   setGeneratedEmojis(
     emojis.filter(
       emoji => emoji.id.length && emoji.url.length && emoji.name.length

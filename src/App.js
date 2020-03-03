@@ -9,12 +9,8 @@ import "./styles.css";
 
 function App() {
   const [uploadedPictures, setUploadedPictures] = useState([]);
-  const [uploadedPictureNames, setUploadedPictureNames] = useState([]);
   const [pictureToken, setPictureToken] = useState(
     localStorage.getItem("pictureToken") || ""
-  );
-  const [tokenSaved, setTokenSaved] = useState(
-    pictureToken.length ? true : false
   );
   const [generatedEmojis, setGeneratedEmojis] = useState([]);
   const [generating, setGenerating] = useState(false);
@@ -22,12 +18,11 @@ function App() {
 
   const handleUpload = async pictures => {
     setUploadedPictures(pictures);
-    setUploadedPictureNames(pictures.map(picture => picture.name));
   };
 
   useEffect(() => {
-    if (!pictureToken) getToken(setPictureToken, setTokenSaved);
-  }, [pictureToken, tokenSaved]);
+    if (!pictureToken) getToken(setPictureToken);
+  }, [pictureToken]);
 
   return (
     <div className="App">
@@ -40,24 +35,23 @@ function App() {
         maxFileSize={5242880}
       />
       <List>
-        {uploadedPictureNames.length
-          ? uploadedPictureNames.map(name => {
+        {uploadedPictures.length
+          ? uploadedPictures.map(picture => {
               return (
-                <ListItem button className="list-item" key={name}>
-                  {name}
+                <ListItem button className="list-item" key={picture}>
+                  {picture.name}
                 </ListItem>
               );
             })
           : null}
       </List>
-      {tokenSaved && uploadedPictures.length && !generating ? (
+      {uploadedPictures.length && !generating ? (
         <Button
           id="button-generate"
           onClick={() =>
             generateEmojis(
               setGenerating,
               setUploadedPictures,
-              setUploadedPictureNames,
               setGeneratedEmojis,
               setErrorMessage,
               uploadedPictures,
