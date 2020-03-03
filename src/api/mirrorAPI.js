@@ -1,6 +1,6 @@
 import axios from "axios";
 
-async function getToken(setPictureToken) {
+async function getMirrorAPIToken(setMirrorAPIToken) {
   let token;
   try {
     const { data } = await axios("https://mirror-ai.p.rapidapi.com/token", {
@@ -10,8 +10,8 @@ async function getToken(setPictureToken) {
       }
     });
     token = data.token;
-    localStorage.setItem("pictureToken", token);
-    setPictureToken(token);
+    localStorage.setItem("mirrorAPIToken", token);
+    setMirrorAPIToken(token);
     return token;
   } catch (err) {
     console.error(err);
@@ -20,17 +20,17 @@ async function getToken(setPictureToken) {
 
 async function generateEmojis(
   setGenerating,
-  setUploadedPictures,
+  setUploadedImages,
   setGeneratedEmojis,
   setErrorMessage,
-  uploadedPictures,
-  pictureToken
+  uploadedImages,
+  mirrorToken
 ) {
   let emojis = [];
   setGenerating(true);
-  for (var photo of uploadedPictures) {
+  for (var image of uploadedImages) {
     let form = new FormData();
-    form.append("photo", photo);
+    form.append("photo", image);
     try {
       let generatedEmoji = await axios(
         "https://mirror-ai.p.rapidapi.com/generate",
@@ -40,14 +40,14 @@ async function generateEmojis(
             "x-rapidapi-host": "mirror-ai.p.rapidapi.com",
             "x-rapidapi-key": process.env.REACT_APP_MIRROR_API_KEY,
             "content-type": "multipart/form-data",
-            "x-token": pictureToken
+            "x-token": mirrorToken
           },
           data: form
         }
       );
       if (!generatedEmoji.data.ok) {
         if (generatedEmoji.data.error === "face_not_detected") {
-          setErrorMessage(`Face not detected in image ${photo.name}`);
+          setErrorMessage(`Face not detected in image ${image.name}`);
         } else {
           setErrorMessage(
             `Ran into some trouble generating your emoji. Sorry about that!`
@@ -57,14 +57,14 @@ async function generateEmojis(
       emojis.push({
         url: generatedEmoji.data.face.url,
         id: generatedEmoji.data.face.id,
-        name: photo.name
+        name: image.name
       });
     } catch (err) {
       console.error(err);
     }
   }
   setGenerating(false);
-  setUploadedPictures([]);
+  setUploadedImages([]);
   setGeneratedEmojis(
     emojis.filter(
       emoji => emoji.id.length && emoji.url.length && emoji.name.length
@@ -72,4 +72,4 @@ async function generateEmojis(
   );
 }
 
-export { getToken, generateEmojis };
+export { getMirrorAPIToken, generateEmojis };

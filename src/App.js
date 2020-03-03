@@ -3,26 +3,26 @@ import React, { useState, useEffect } from "react";
 import ImageUploader from "react-images-upload";
 import { Button, List, ListItem } from "@material-ui/core";
 
-import { generateEmojis, getToken } from "./api/mirrorAPI.js";
+import { generateEmojis, getMirrorAPIToken } from "./api/mirrorAPI.js";
 
 import "./styles.css";
 
 function App() {
-  const [uploadedPictures, setUploadedPictures] = useState([]);
-  const [pictureToken, setPictureToken] = useState(
-    localStorage.getItem("pictureToken") || ""
+  const [uploadedImages, setUploadedImages] = useState([]);
+  const [mirrorAPIToken, setMirrorAPIToken] = useState(
+    localStorage.getItem("mirrorAPIToken") || ""
   );
   const [generatedEmojis, setGeneratedEmojis] = useState([]);
   const [generating, setGenerating] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleUpload = async pictures => {
-    setUploadedPictures(pictures);
+  const handleUpload = async images => {
+    setUploadedImages(images);
   };
 
   useEffect(() => {
-    if (!pictureToken) getToken(setPictureToken);
-  }, [pictureToken]);
+    if (!mirrorAPIToken) getMirrorAPIToken(setMirrorAPIToken);
+  }, [mirrorAPIToken]);
 
   return (
     <div className="App">
@@ -35,38 +35,38 @@ function App() {
         maxFileSize={5242880}
       />
       <List>
-        {uploadedPictures.length
-          ? uploadedPictures.map(picture => {
+        {uploadedImages.length
+          ? uploadedImages.map(image => {
               return (
-                <ListItem button className="list-item" key={picture}>
-                  {picture.name}
+                <ListItem button className="list-item" key={image}>
+                  {image.name}
                 </ListItem>
               );
             })
           : null}
       </List>
-      {uploadedPictures.length && !generating ? (
+      {uploadedImages.length && !generating ? (
         <Button
           id="button-generate"
           onClick={() =>
             generateEmojis(
               setGenerating,
-              setUploadedPictures,
+              setUploadedImages,
               setGeneratedEmojis,
               setErrorMessage,
-              uploadedPictures,
-              pictureToken
+              uploadedImages,
+              mirrorAPIToken
             )
           }
           variant="contained"
           color="primary"
         >
-          {uploadedPictures.length > 1 ? "Generate Emojis" : "Generate Emoji"}
+          {uploadedImages.length > 1 ? "Generate Emojis" : "Generate Emoji"}
         </Button>
       ) : null}
       {generating ? (
         <div className="loading">
-          {uploadedPictures.length > 1
+          {uploadedImages.length > 1
             ? "Generating your emojis..."
             : "Generating your emoji..."}
         </div>
