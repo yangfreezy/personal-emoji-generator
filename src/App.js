@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import ImageUploader from "react-images-upload";
 import { Button, List, ListItem } from "@material-ui/core";
 
-import { generateEmojis, getToken } from "./api/mirror-ai.js";
+import { generateEmojis, getToken } from "./api/mirrorAPI.js";
 
 import "./styles.css";
 
@@ -31,7 +31,7 @@ function App() {
 
   return (
     <div className="App">
-      <div className="title"> Personal Emoji Generator </div>
+      <div className="title"> Emoji Yo Face! </div>
       <ImageUploader
         withIcon={true}
         buttonText="Upload"
@@ -51,32 +51,30 @@ function App() {
           : null}
       </List>
       {tokenSaved && uploadedPictures.length && !generating ? (
-        <div className="button-generate">
-          <Button
-            id="button-generate"
-            onClick={() =>
-              generateEmojis(
-                setGenerating,
-                setUploadedPictures,
-                setUploadedPictureNames,
-                setGeneratedEmojis,
-                setErrorMessage,
-                uploadedPictures,
-                pictureToken
-              )
-            }
-            variant="contained"
-            color="primary"
-          >
-            {uploadedPictures.length > 1 ? "Generate Emojis" : "Generate Emoji"}
-          </Button>
-        </div>
+        <Button
+          id="button-generate"
+          onClick={() =>
+            generateEmojis(
+              setGenerating,
+              setUploadedPictures,
+              setUploadedPictureNames,
+              setGeneratedEmojis,
+              setErrorMessage,
+              uploadedPictures,
+              pictureToken
+            )
+          }
+          variant="contained"
+          color="primary"
+        >
+          {uploadedPictures.length > 1 ? "Generate Emojis" : "Generate Emoji"}
+        </Button>
       ) : null}
       {generating ? (
         <div className="loading">
           {uploadedPictures.length > 1
-            ? "Generating your emojis.."
-            : "Generating your emoji.."}
+            ? "Generating your emojis..."
+            : "Generating your emoji..."}
         </div>
       ) : null}
       {errorMessage.length ? (
