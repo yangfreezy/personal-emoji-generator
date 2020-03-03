@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-import axios from "axios";
 import ImageUploader from "react-images-upload";
 import { Button, List, ListItem } from "@material-ui/core";
+
+import { generateEmojis, getToken } from "./api/mirror-ai.js";
 
 import "./styles.css";
 
@@ -24,73 +25,9 @@ function App() {
     setUploadedPictureNames(pictures.map(picture => picture.name));
   };
 
-  useEffect(() => {}, [uploadedPictureNames]);
-
   useEffect(() => {
-    async function getToken() {
-      let token;
-      try {
-        const { data } = await axios("https://mirror-ai.p.rapidapi.com/token", {
-          headers: {
-            "x-rapidapi-host": "mirror-ai.p.rapidapi.com",
-            "x-rapidapi-key": process.env.REACT_APP_MIRROR_API_KEY
-          }
-        });
-        token = data.token;
-        localStorage.setItem("pictureToken", token);
-        setPictureToken(token);
-        setTokenSaved(true);
-        return token;
-      } catch (err) {
-        console.error(err);
-      }
-    }
-    if (!pictureToken) getToken();
+    if (!pictureToken) getToken(setPictureToken, setTokenSaved);
   }, [pictureToken, tokenSaved]);
-
-  async function generateEmojis() {
-    let emojis = [];
-    setGenerating(true);
-    for (var photo of uploadedPictures) {
-      let form = new FormData();
-      form.append("photo", photo);
-      try {
-        let generatedEmoji = await axios(
-          "https://mirror-ai.p.rapidapi.com/generate",
-          {
-            method: "POST",
-            headers: {
-              "x-rapidapi-host": "mirror-ai.p.rapidapi.com",
-              "x-rapidapi-key": process.env.REACT_APP_MIRROR_API_KEY,
-              "content-type": "multipart/form-data",
-              "x-token": pictureToken
-            },
-            data: form
-          }
-        );
-        if (!generatedEmoji.data.ok) {
-          if (generatedEmoji.data.error === "face_not_detected") {
-            setErrorMessage(`Face not detected in image ${photo.name}`);
-          }
-        }
-        emojis.push({
-          url: generatedEmoji.data.face.url,
-          id: generatedEmoji.data.face.id,
-          name: photo.name
-        });
-      } catch (err) {
-        console.log(err);
-        console.error(err);
-        alert("Error generating emojis");
-      }
-    }
-    setGenerating(false);
-    setUploadedPictures([]);
-    setUploadedPictureNames([]);
-    setGeneratedEmojis(
-      emojis.filter(emoji => emoji.id.length && emoji.url.length)
-    );
-  }
 
   return (
     <div className="App">
@@ -117,7 +54,17 @@ function App() {
         <div className="button-generate">
           <Button
             id="button-generate"
-            onClick={generateEmojis}
+            onClick={() =>
+              generateEmojis(
+                setGenerating,
+                setUploadedPictures,
+                setUploadedPictureNames,
+                setGeneratedEmojis,
+                setErrorMessage,
+                uploadedPictures,
+                pictureToken
+              )
+            }
             variant="contained"
             color="primary"
           >
