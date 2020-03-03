@@ -31,7 +31,7 @@ function App() {
 
   return (
     <div className="App">
-      <div className="title"> Emoji Yo Face! </div>
+      <div className="title"> Emoji Generator </div>
       <ImageUploader
         withIcon={true}
         buttonText="Upload"
