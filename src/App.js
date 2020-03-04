@@ -87,18 +87,16 @@ function App() {
               );
             })
           : null}
-      </Layout>
-      {generatedEmojis.length ? (
-        <Button
-          id="button-save"
-          onClick={() => zipAndSaveEmojis(generatedEmojis, setErrorMessage)}
-          variant="contained"
-          color="primary"
-        >
-          Save As Zip
-        </Button>
-      ) : null}
-      <Layout className="row">
+        {generatedEmojis.length ? (
+          <Button
+            id="button-save"
+            onClick={() => zipAndSaveEmojis(generatedEmojis, setErrorMessage)}
+            variant="contained"
+            color="primary"
+          >
+            Save As Zip
+          </Button>
+        ) : null}
         {generatedEmojis.length
           ? generatedEmojis.map(emoji => (
               <Card className="card" key={emoji.name}>
