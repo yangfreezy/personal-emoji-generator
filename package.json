@@ -10,7 +10,6 @@
     "axios": "^0.19.2",
     "file-saver": "^2.0.2",
     "jszip": "^3.2.2",
-    "micro-router": "^0.1.1",
     "react": "^16.7.0-alpha.2",
     "react-dom": "^16.7.0-alpha.2",
     "react-images-upload": "^1.2.8",
