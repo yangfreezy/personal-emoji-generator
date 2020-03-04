@@ -45,21 +45,15 @@ async function generateEmojis(
           data: form
         }
       );
-      if (!generatedEmoji.data.ok) {
-        if (generatedEmoji.data.error === "face_not_detected") {
-          setErrorMessage(`Face not detected in image ${image.name}`);
-        } else {
-          setErrorMessage(
-            `Ran into some trouble generating your emoji. Sorry about that!`
-          );
-        }
-      }
       emojis.push({
         url: generatedEmoji.data.face.url,
         id: generatedEmoji.data.face.id,
         name: image.name
       });
     } catch (err) {
+      setErrorMessage(
+        `Ran into some trouble generating one of your emojis. Sorry about that!`
+      );
       console.error(err);
     }
   }

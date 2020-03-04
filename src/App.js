@@ -4,6 +4,7 @@ import ImageUploader from "react-images-upload";
 import { Button, Card } from "@material-ui/core";
 
 import { generateEmojis, getMirrorAPIToken } from "./api/mirrorAPI.js";
+import { zipAndSaveEmojis } from "./api/zipAndSaveEmojis.js";
 
 import { Text, TemporaryMessage, Layout } from "./Components";
 
@@ -26,6 +27,10 @@ function App() {
     if (!mirrorAPIToken) getMirrorAPIToken(setMirrorAPIToken);
   }, [mirrorAPIToken]);
 
+  useEffect(() => {
+    setTimeout(() => setErrorMessage(""), 12000);
+  }, [errorMessage]);
+
   return (
     <Layout className="App">
       <Text className="title" value="Emoji Generator" />
@@ -38,9 +43,7 @@ function App() {
       />
       {generating ? (
         <TemporaryMessage className="loading">
-          {uploadedImages.length > 1
-            ? "Generating your emojis..."
-            : "Generating your emoji..."}
+          {"Generating..."}
         </TemporaryMessage>
       ) : null}
       {errorMessage.length ? (
@@ -64,7 +67,7 @@ function App() {
           variant="contained"
           color="primary"
         >
-          {uploadedImages.length > 1 ? "Generate Emojis" : "Generate Emoji"}
+          {"Generate"}
         </Button>
       ) : null}
       <Layout className="row">
@@ -85,6 +88,16 @@ function App() {
             })
           : null}
       </Layout>
+      {generatedEmojis.length ? (
+        <Button
+          id="button-save"
+          onClick={() => zipAndSaveEmojis(generatedEmojis, setErrorMessage)}
+          variant="contained"
+          color="primary"
+        >
+          Save As Zip
+        </Button>
+      ) : null}
       <Layout className="row">
         {generatedEmojis.length
           ? generatedEmojis.map(emoji => (

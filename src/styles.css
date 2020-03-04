@@ -16,8 +16,8 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-top: 25px;
-  margin-bottom: 25px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .row > .card {
@@ -52,6 +52,13 @@ body {
   margin-top: 25px;
 }
 
+#button-save {
+  font-family: "Helvetica Neue", sans-serif;
+  background-color: black;
+  color: white;
+  margin-top: 25px;
+}
+
 .card-layout {
   text-align: center;
   align-items: center;
@@ -63,6 +70,8 @@ body {
   height: 200px;
   margin-top: 30px;
   margin-bottom: 30px;
+  margin-left: 25px;
+  margin-right: 25px;
 }
 
 .card-name {

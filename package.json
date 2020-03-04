@@ -8,6 +8,9 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
+    "file-saver": "^2.0.2",
+    "jszip": "^3.2.2",
+    "micro-router": "^0.1.1",
     "react": "^16.7.0-alpha.2",
     "react-dom": "^16.7.0-alpha.2",
     "react-images-upload": "^1.2.8",
@@ -36,6 +39,5 @@
   },
   "devDependencies": {
     "dotenv": "^8.2.0"
-  },
-  "proxy": "http://localhost:3000"
+  }
 }
