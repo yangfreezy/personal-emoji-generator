@@ -12,13 +12,26 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.row > .card {
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
 .title {
   margin-top: 50px;
   font-size: 36px;
   font-weight: bolder;
 }
 
-.list-item {
+.card {
   font-family: "Helvetica Neue", sans-serif;
   margin-top: 15px;
   flex-wrap: nowrap;
@@ -39,19 +52,22 @@ body {
   margin-top: 25px;
 }
 
-.emoji-card {
+.card-layout {
   text-align: center;
   align-items: center;
 }
 
-.emoji-image {
+.card-image {
+  object-fit: cover;
   width: 200px;
+  height: 200px;
   margin-top: 30px;
   margin-bottom: 30px;
 }
 
-.emoji-name {
-  font-size: 18px;
+.card-name {
+  font-size: 14px;
+  margin-top: 30px;
 }
 
 .loading {

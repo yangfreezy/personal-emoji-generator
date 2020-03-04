@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import ImageUploader from "react-images-upload";
-import { Button, List, ListItem } from "@material-ui/core";
+import { Button, Card } from "@material-ui/core";
 
 import { generateEmojis, getMirrorAPIToken } from "./api/mirrorAPI.js";
 
@@ -27,7 +27,7 @@ function App() {
   }, [mirrorAPIToken]);
 
   return (
-    <div className="App">
+    <Layout className="App">
       <Text className="title" value="Emoji Generator" />
       <ImageUploader
         withIcon={true}
@@ -48,17 +48,6 @@ function App() {
           {errorMessage}
         </TemporaryMessage>
       ) : null}
-      <List>
-        {uploadedImages.length && !generating
-          ? uploadedImages.map(image => {
-              return (
-                <ListItem button className="list-item" key={image}>
-                  {image.name}
-                </ListItem>
-              );
-            })
-          : null}
-      </List>
       {uploadedImages.length && !generating ? (
         <Button
           id="button-generate"
@@ -78,15 +67,37 @@ function App() {
           {uploadedImages.length > 1 ? "Generate Emojis" : "Generate Emoji"}
         </Button>
       ) : null}
-      {generatedEmojis.length
-        ? generatedEmojis.map(emoji => (
-            <Layout className="emoji-card">
-              <Text className="emoji-name" value={emoji.name} />
-              <img className="emoji-image" src={emoji.url} alt={emoji.id} />
-            </Layout>
-          ))
-        : null}
-    </div>
+      <Layout className="row">
+        {uploadedImages.length && !generating
+          ? uploadedImages.map(image => {
+              return (
+                <Card className="card" key={image.name}>
+                  <Layout className="card-layout">
+                    <Text className="card-name" value={image.name} />
+                    <img
+                      className="card-image"
+                      src={URL.createObjectURL(image)}
+                      alt={image.name}
+                    />
+                  </Layout>
+                </Card>
+              );
+            })
+          : null}
+      </Layout>
+      <Layout className="row">
+        {generatedEmojis.length
+          ? generatedEmojis.map(emoji => (
+              <Card className="card" key={emoji.name}>
+                <Layout className="card-layout">
+                  <Text className="card-name" value={emoji.name} />
+                  <img className="card-image" src={emoji.url} alt={emoji.id} />
+                </Layout>
+              </Card>
+            ))
+          : null}
+      </Layout>
+    </Layout>
   );
 }
 
