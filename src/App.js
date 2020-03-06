@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import ImageUploader from "react-images-upload";
 
 import { generateEmojis, getMirrorAPIToken } from "./api/mirrorAPI.js";
 import { zipAndSaveEmojis } from "./api/zipAndSaveEmojis.js";
 
 import { CardList, Explanation } from "./Containers";
 import {
+  ImgUploader,
   Layout,
   LoadingAnimation,
   PrimaryButton,
@@ -40,13 +40,7 @@ function App() {
   return (
     <Layout stylesClass="App">
       <Text stylesClass="title" text="Make An Emoji!" />
-      <ImageUploader
-        withIcon={true}
-        buttonText="Upload"
-        onChange={handleUpload}
-        imgExtension={[".jpg", ".gif", ".png", ".gif"]}
-        maxFileSize={5242880}
-      />
+      <ImgUploader onchange={handleUpload} />
       <Render renderIf={errorMessage.length}>
         <TemporaryMessage stylesClass="error-message" message={errorMessage} />
       </Render>
@@ -66,7 +60,11 @@ function App() {
           }
         />
       </Render>
-      <Render renderIf={generatedEmojis.length}>
+      <Render
+        renderIf={
+          generatedEmojis.length && !isGenerating && !uploadedImages.length
+        }
+      >
         <PrimaryButton
           stylesId="button-save"
           handleclick={() => zipAndSaveEmojis(generatedEmojis, setErrorMessage)}
@@ -92,7 +90,11 @@ function App() {
           <CardList cards={uploadedImages} />
         </Layout>
       </Render>
-      <Render renderIf={generatedEmojis.length && !isGenerating}>
+      <Render
+        renderIf={
+          generatedEmojis.length && !isGenerating && !uploadedImages.length
+        }
+      >
         <Layout stylesClass="row">
           <CardList cards={generatedEmojis} />
         </Layout>
