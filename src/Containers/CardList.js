@@ -8,7 +8,7 @@ const CardList = ({ shouldLoadIf, cards }) => {
   return shouldLoadIf ? (
     <Fragment>
       {cards.map(card => (
-        <Card button className="card" key={card.name}>
+        <Card className="card" key={card.name}>
           <Layout stylesClass="card-layout">
             <Text stylesClass="card-name" text={card.name} />
             <img

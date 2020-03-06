@@ -5,7 +5,13 @@ import { generateEmojis, getMirrorAPIToken } from "./api/mirrorAPI.js";
 import { zipAndSaveEmojis } from "./api/zipAndSaveEmojis.js";
 
 import { CardList } from "./Containers";
-import { Text, PrimaryButton, Layout, TemporaryMessage } from "./Components";
+import {
+  Layout,
+  LoadingAnimation,
+  PrimaryButton,
+  TemporaryMessage,
+  Text
+} from "./Components";
 
 import "./styles.css";
 
@@ -41,11 +47,6 @@ function App() {
         maxFileSize={5242880}
       />
       <TemporaryMessage
-        shouldLoadIf={generating}
-        stylesClass="loading"
-        message="Generating..."
-      />
-      <TemporaryMessage
         shouldLoadIf={errorMessage.length}
         stylesClass="error-message"
         message={errorMessage}
@@ -72,12 +73,15 @@ function App() {
         value={"Save As Zip"}
       />
       <Layout stylesClass="row">
+        <LoadingAnimation stylesClass="loading" shouldLoadIf={generating} />
+      </Layout>
+      <Layout stylesClass="row">
         <CardList
           shouldLoadIf={uploadedImages.length && !generating}
           cards={uploadedImages}
         />
         <CardList
-          shouldLoadIf={generatedEmojis.length && !generating}
+          shouldLoadIf={generatedEmojis.length}
           cards={generatedEmojis}
         />
       </Layout>

@@ -15,6 +15,7 @@ const PORT = 5000;
 // create a route for the app
 app.post("/getEmojis", async (req, res) => {
   let emojis = [];
+  let error = "";
   for (var emoji of req.body.emojis) {
     let res;
     try {
@@ -27,10 +28,10 @@ app.post("/getEmojis", async (req, res) => {
       });
     } catch (err) {
       console.error(err);
-      res.send("Error");
+      error = "Error generating an emoji";
     }
   }
-  return res.send(emojis);
+  return res.send({ emojis, error });
 });
 
 // make the server listen to requests

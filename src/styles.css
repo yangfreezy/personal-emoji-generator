@@ -1,3 +1,14 @@
+:root {
+  --main-color: #33adff;
+  --grey: #5a5a5a;
+  --mid-grey: #404040;
+  --dark-grey: #1a1a1a;
+  --pink: #b300b3;
+  --green: #00ff99;
+  --black: #000000;
+  --size-to: 250px;
+}
+
 .App {
   display: flex;
   flex-direction: column;
@@ -8,7 +19,7 @@
 body {
   margin: 0;
   font-family: "Century Gothic", sans-serif;
-  color: #33adff;
+  color: var(--main-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -26,7 +37,7 @@ body {
 
 #button-save {
   font-family: "Century Gothic", sans-serif;
-  background-color: #1a1a1a;
+  background-color: var(--dark-grey);
   color: white;
   margin-top: 25px;
 }
@@ -34,9 +45,10 @@ body {
 .row {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   flex-wrap: wrap;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .row > .card {
@@ -45,20 +57,14 @@ body {
 }
 
 .title {
-  color: #33adff;
+  color: var(--main-color);
   margin-top: 35px;
   font-size: 36px;
   font-weight: bolder;
 }
 
-.card {
-  font-family: "Century Gothic", sans-serif;
-  margin-top: 15px;
-  flex-wrap: nowrap;
-}
-
 .fileContainer .chooseFileButton {
-  background: #33adff;
+  background: var(--main-color);
   border-radius: 0%;
   font-family: "Century Gothic", sans-serif;
   font-weight: bold;
@@ -68,7 +74,7 @@ body {
   border-radius: 5px;
 }
 .fileContainer .chooseFileButton:hover {
-  background-color: black;
+  background-color: var(--black);
 }
 
 .fileContainer .uploadIcon {
@@ -77,10 +83,17 @@ body {
 }
 
 .fileContainer p {
-  color: #5a5a5a;
+  color: var(--grey);
   font-size: 12px;
   margin-top: 20px;
   letter-spacing: 0.75px;
+}
+
+.card {
+  font-family: "Century Gothic", sans-serif;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  flex-wrap: nowrap;
 }
 
 .card-layout {
@@ -92,25 +105,26 @@ body {
   object-fit: cover;
   width: 200px;
   height: 200px;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 25px;
+  margin-bottom: 25px;
   margin-left: 25px;
   margin-right: 25px;
 }
 
 .card-name {
   font-size: 14px;
-  margin-top: 30px;
+  margin-top: 25px;
 }
 
 .error-message {
+  font-size: 10px;
   color: red;
   margin-top: 15px;
   margin-bottom: 15px;
 }
 
 .loading {
-  margin-top: 15px;
+  margin-top: 50px;
   margin-bottom: 15px;
   -webkit-animation: color-change 5s infinite;
   -moz-animation: color-change 5s infinite;
@@ -119,114 +133,152 @@ body {
   animation: color-change 5s infinite;
 }
 
+.circle {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 100px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.circle__el {
+  width: 0;
+  height: 0;
+  background: transparent;
+  border: 5px solid var(--circle-color);
+  border-radius: 50%;
+  animation: go 1.5s ease-out infinite;
+}
+
+.circle__el_two {
+  animation-delay: 0.5s;
+}
+
+.circle__el_three {
+  animation-delay: 1s;
+}
+
 @-webkit-keyframes background-color-change {
   0% {
-    background-color: #000000;
+    background-color: var(--black);
   }
   50% {
-    background-color: #404040;
+    background-color: var(--main-grey);
   }
   100% {
-    background-color: #000000;
+    background-color: var(--black);
   }
 }
 @-moz-keyframes background-color-change {
   0% {
-    background-color: #000000;
+    background-color: var(--black);
   }
   50% {
-    background-color: #404040;
+    background-color: var(--main-grey);
   }
   100% {
-    background-color: #000000;
+    background-color: var(--black);
   }
 }
 @-ms-keyframes background-color-change {
   0% {
-    background-color: #000000;
+    background-color: var(--black);
   }
   50% {
-    background-color: #404040;
+    background-color: var(--main-grey);
   }
   100% {
-    background-color: #000000;
+    background-color: var(--black);
   }
 }
 @-o-keyframes background-color-change {
   0% {
-    background-color: #000000;
+    background-color: var(--black);
   }
   50% {
-    background-color: #404040;
+    background-color: var(--main-grey);
   }
   100% {
-    background-color: #000000;
+    background-color: var(--black);
   }
 }
 @keyframes background-color-change {
   0% {
-    background-color: #000000;
+    background-color: var(--black);
   }
   50% {
-    background-color: #404040;
+    background-color: var(--main-grey);
   }
   100% {
-    background-color: #000000;
+    background-color: var(--black);
   }
 }
 
 @-webkit-keyframes color-change {
   0% {
-    color: #00ff99;
+    color: var(--green);
   }
   50% {
-    color: #b300b3;
+    color: var(--pink);
   }
   100% {
-    color: #00ff99;
+    color: var(--green);
   }
 }
 @-moz-keyframes color-change {
   0% {
-    color: #00ff99;
+    color: var(--green);
   }
   50% {
-    color: #b300b3;
+    color: var(--pink);
   }
   100% {
-    color: #00ff99;
+    color: var(--green);
   }
 }
 @-ms-keyframes color-change {
   0% {
-    color: #00ff99;
+    color: var(--green);
   }
   50% {
-    color: #b300b3;
+    color: var(--pink);
   }
   100% {
-    color: #00ff99;
+    color: var(--green);
   }
 }
 @-o-keyframes color-change {
   0% {
-    color: #00ff99;
+    color: var(--green);
   }
   50% {
-    color: #b300b3;
+    color: var(--pink);
   }
   100% {
-    color: #00ff99;
+    color: var(--green);
   }
 }
 @keyframes color-change {
   0% {
-    color: #00ff99;
+    color: var(--green);
   }
   50% {
-    color: #b300b3;
+    color: var(--pink);
   }
   100% {
-    color: #00ff99;
+    color: var(--green);
+  }
+}
+@keyframes go {
+  100% {
+    width: var(--size-to);
+    height: var(--size-to);
+    box-shadow: 0 0 15px var(--main-color);
+    opacity: 0;
   }
 }

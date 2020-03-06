@@ -27,15 +27,11 @@ const zipAndSaveEmojis = async (emojis, setErrorMessage) => {
       url: "http://localhost:5000/getEmojis",
       data: { emojis }
     });
-    if (res.data === "Error") {
-      setErrorMessage("Error packaging your emojis, sorry about that!");
-    }
-    downloadedEmojis = res.data.map(emoji => {
-      return {
-        data: b64toBlob(emoji.base64),
-        name: emoji.name
-      };
-    });
+    if (res.data.error) setErrorMessage(res.data.error);
+    downloadedEmojis = res.data.emojis.map(emoji => ({
+      data: b64toBlob(emoji.base64),
+      name: emoji.name
+    }));
   } catch (err) {
     console.error(err);
   }

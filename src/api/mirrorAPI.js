@@ -45,6 +45,12 @@ async function generateEmojis(
           data: form
         }
       );
+      if (!generatedEmoji.data.face) {
+        setErrorMessage(
+          `Ran into some trouble generating one of your emojis. Sorry about that!`
+        );
+        continue;
+      }
       emojis.push({
         url: generatedEmoji.data.face.url,
         id: generatedEmoji.data.face.id,
@@ -57,13 +63,10 @@ async function generateEmojis(
       console.error(err);
     }
   }
+  console.log(emojis);
   setGenerating(false);
   setUploadedImages([]);
-  setGeneratedEmojis(
-    emojis.filter(
-      emoji => emoji.id.length && emoji.url.length && emoji.name.length
-    )
-  );
+  setGeneratedEmojis(emojis);
 }
 
 export { getMirrorAPIToken, generateEmojis };
