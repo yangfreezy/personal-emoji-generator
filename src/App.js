@@ -92,7 +92,7 @@ function App() {
           <CardList cards={uploadedImages} />
         </Layout>
       </Render>
-      <Render renderIf={generatedEmojis.length}>
+      <Render renderIf={generatedEmojis.length && !isGenerating}>
         <Layout stylesClass="row">
           <CardList cards={generatedEmojis} />
         </Layout>
