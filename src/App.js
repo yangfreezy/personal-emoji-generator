@@ -51,18 +51,20 @@ function App() {
         <TemporaryMessage stylesClass="error-message" message={errorMessage} />
       </Render>
       <Render renderIf={uploadedImages.length && !isGenerating}>
-        <PrimaryButton />
-        stylesId="button-generate" value="Generate" handleclick=
-        {() =>
-          generateEmojis(
-            setIsGenerating,
-            setUploadedImages,
-            setGeneratedEmojis,
-            setErrorMessage,
-            uploadedImages,
-            mirrorAPIToken
-          )
-        }
+        <PrimaryButton
+          stylesId="button-generate"
+          value="Generate"
+          handleclick={() =>
+            generateEmojis(
+              setIsGenerating,
+              setUploadedImages,
+              setGeneratedEmojis,
+              setErrorMessage,
+              uploadedImages,
+              mirrorAPIToken
+            )
+          }
+        />
       </Render>
       <Render renderIf={generatedEmojis.length}>
         <PrimaryButton
@@ -77,16 +79,21 @@ function App() {
         }
       >
         <Layout stylesClass="row">
-          <Text stylesClass="explanation-title" text="How it works" />
-          <Text
-            stylesClass="explanation-body"
-            text="1. Upload any number of images of yourself, your friend, or anyone with their face clearly in view."
-          />
-          <Text stylesClass="explanation-body" text="2. Generate the emojis." />
-          <Text
-            stylesClass="explanation-body"
-            text="3. Save them all as a zip with one click!"
-          />
+          <Layout stylesClass="column explanation">
+            <Text stylesClass="explanation-title" text="How it works" />
+            <Text
+              stylesClass="explanation-body"
+              text="1. Upload any number of images of yourself, your friend, or anyone with their face clearly in view."
+            />
+            <Text
+              stylesClass="explanation-body"
+              text="2. Generate the emojis."
+            />
+            <Text
+              stylesClass="explanation-body"
+              text="3. Save them all as a zip with one click!"
+            />
+          </Layout>
         </Layout>
       </Render>
       <Render renderIf={isGenerating}>
