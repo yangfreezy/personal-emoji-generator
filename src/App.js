@@ -35,7 +35,7 @@ function App() {
 
   return (
     <Layout stylesClass="App">
-      <Text stylesClass="title" text="Make An Emoji!" />
+      <Text stylesClass="title" text="Make Emojis!" />
       <ImgUploader onchange={async images => setUploadedImages(images)} />
       <Render renderIf={errorMessage.length}>
         <TemporaryMessage stylesClass="error-message" message={errorMessage} />
