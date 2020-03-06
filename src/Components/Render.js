@@ -1,11 +1,7 @@
-import React from "react";
+import React, { Fragment } from "react";
 
-import { Layout } from "./../Layouts";
-
-const Render = ({ renderIf, stylesClass, children }) => {
-  return renderIf ? (
-    <Layout stylesClass={stylesClass}>{children} </Layout>
-  ) : null;
+const Render = ({ renderIf, children }) => {
+  return renderIf ? <Fragment>{children} </Fragment> : null;
 };
 
 export default Render;
