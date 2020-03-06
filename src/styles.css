@@ -105,12 +105,13 @@ body {
 .explanation {
   color: var(--mid-grey);
   font-weight: lighter;
-  margin-top: 25px;
-  margin-bottom: 25px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .explanation-title {
   font-size: 18px;
+  font-weight: 900;
 }
 
 .card {
