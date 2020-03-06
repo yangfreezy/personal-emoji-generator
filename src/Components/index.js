@@ -1,15 +1,15 @@
 import ImgUploader from "./ImgUploader";
-import Render from "./Render";
 import LoadingAnimation from "./LoadingAnimation";
-import TemporaryMessage from "./TemporaryMessage";
 import PrimaryButton from "./PrimaryButton";
+import Render from "./Render";
+import TemporaryMessage from "./TemporaryMessage";
 import Text from "./Text";
 
 export {
   ImgUploader,
-  Render,
   LoadingAnimation,
   PrimaryButton,
+  Render,
   TemporaryMessage,
   Text
 };

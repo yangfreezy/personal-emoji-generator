@@ -12,18 +12,18 @@ import {
   TemporaryMessage,
   Text
 } from "./Components";
-import { Row, Layout } from "./Layouts";
+import { Layout, Row } from "./Layouts";
 
 import "./styles.css";
 
 function App() {
-  const [uploadedImages, setUploadedImages] = useState([]);
   const [mirrorAPIToken, setMirrorAPIToken] = useState(
     localStorage.getItem("mirrorAPIToken") || ""
   );
-  const [generatedEmojis, setGeneratedEmojis] = useState([]);
-  const [isGenerating, setIsGenerating] = useState(false);
+  const [uploadedImages, setUploadedImages] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [generatedEmojis, setGeneratedEmojis] = useState([]);
 
   useEffect(() => {
     if (!mirrorAPIToken) getMirrorAPIToken(setMirrorAPIToken);
