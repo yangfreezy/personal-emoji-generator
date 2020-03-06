@@ -19,7 +19,7 @@ async function getMirrorAPIToken(setMirrorAPIToken) {
 }
 
 async function generateEmojis(
-  setGenerating,
+  setIsGenerating,
   setUploadedImages,
   setGeneratedEmojis,
   setErrorMessage,
@@ -27,7 +27,7 @@ async function generateEmojis(
   mirrorToken
 ) {
   let emojis = [];
-  setGenerating(true);
+  setIsGenerating(true);
   for (var image of uploadedImages) {
     let form = new FormData();
     form.append("photo", image);
@@ -64,7 +64,7 @@ async function generateEmojis(
     }
   }
   console.log(emojis);
-  setGenerating(false);
+  setIsGenerating(false);
   setUploadedImages([]);
   setGeneratedEmojis(emojis);
 }

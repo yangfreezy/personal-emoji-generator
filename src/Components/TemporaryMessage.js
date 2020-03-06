@@ -1,7 +1,7 @@
 import React from "react";
 
-const TemporaryMessage = ({ shouldLoadIf, message, stylesClass }) => {
-  return shouldLoadIf ? <div className={stylesClass}>{message}</div> : null;
+const TemporaryMessage = ({ message, stylesClass }) => {
+  return <div className={stylesClass}>{message}</div>;
 };
 
 export default TemporaryMessage;

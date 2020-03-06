@@ -2,8 +2,8 @@ import React from "react";
 
 import Layout from "./Layout";
 
-const LoadingAnimation = ({ shouldLoadIf, stylesClass }) => {
-  return shouldLoadIf ? (
+const LoadingAnimation = ({ stylesClass }) => {
+  return (
     <Layout stylesClass="loading">
       <div className="circle">
         <span className="circle__el"></span>
@@ -15,7 +15,7 @@ const LoadingAnimation = ({ shouldLoadIf, stylesClass }) => {
         <span className="circle__el circle__el_three"></span>
       </div>
     </Layout>
-  ) : null;
+  );
 };
 
 export default LoadingAnimation;

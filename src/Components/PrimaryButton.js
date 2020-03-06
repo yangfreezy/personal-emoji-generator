@@ -2,8 +2,8 @@ import React from "react";
 
 import { Button } from "@material-ui/core";
 
-const PrimaryButton = ({ shouldLoadIf, handleclick, stylesId, value }) => {
-  return shouldLoadIf ? (
+const PrimaryButton = ({ handleclick, stylesId, value }) => {
+  return (
     <Button
       id={stylesId}
       variant="contained"
@@ -12,7 +12,7 @@ const PrimaryButton = ({ shouldLoadIf, handleclick, stylesId, value }) => {
     >
       {value}
     </Button>
-  ) : null;
+  );
 };
 
 export default PrimaryButton;

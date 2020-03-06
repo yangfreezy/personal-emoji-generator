@@ -4,8 +4,8 @@ import { Card } from "@material-ui/core";
 
 import { Layout, Text } from "./../Components";
 
-const CardList = ({ shouldLoadIf, cards }) => {
-  return shouldLoadIf ? (
+const CardList = ({ cards }) => {
+  return (
     <Fragment>
       {cards.map(card => (
         <Card className="card" key={card.name}>
@@ -20,7 +20,7 @@ const CardList = ({ shouldLoadIf, cards }) => {
         </Card>
       ))}
     </Fragment>
-  ) : null;
+  );
 };
 
 export default CardList;

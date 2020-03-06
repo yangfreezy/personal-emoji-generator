@@ -6,6 +6,7 @@ import { zipAndSaveEmojis } from "./api/zipAndSaveEmojis.js";
 
 import { CardList } from "./Containers";
 import {
+  Render,
   Layout,
   LoadingAnimation,
   PrimaryButton,
@@ -21,7 +22,7 @@ function App() {
     localStorage.getItem("mirrorAPIToken") || ""
   );
   const [generatedEmojis, setGeneratedEmojis] = useState([]);
-  const [generating, setGenerating] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleUpload = async images => {
@@ -33,7 +34,7 @@ function App() {
   }, [mirrorAPIToken]);
 
   useEffect(() => {
-    setTimeout(() => setErrorMessage(""), 8000);
+    setTimeout(() => setErrorMessage(""), 5000);
   }, [errorMessage]);
 
   return (
@@ -46,18 +47,15 @@ function App() {
         imgExtension={[".jpg", ".gif", ".png", ".gif"]}
         maxFileSize={5242880}
       />
-      <TemporaryMessage
-        shouldLoadIf={errorMessage.length}
-        stylesClass="error-message"
-        message={errorMessage}
-      />
-      <PrimaryButton
-        shouldLoadIf={uploadedImages.length && !generating}
-        stylesId="button-generate"
-        value="Generate"
-        handleclick={() =>
+      <Render renderIf={errorMessage.length}>
+        <TemporaryMessage stylesClass="error-message" message={errorMessage} />
+      </Render>
+      <Render renderIf={uploadedImages.length && !isGenerating}>
+        <PrimaryButton />
+        stylesId="button-generate" value="Generate" handleclick=
+        {() =>
           generateEmojis(
-            setGenerating,
+            setIsGenerating,
             setUploadedImages,
             setGeneratedEmojis,
             setErrorMessage,
@@ -65,26 +63,47 @@ function App() {
             mirrorAPIToken
           )
         }
-      />
-      <PrimaryButton
-        shouldLoadIf={generatedEmojis.length}
-        stylesId="button-save"
-        handleclick={() => zipAndSaveEmojis(generatedEmojis, setErrorMessage)}
-        value={"Save As Zip"}
-      />
-      <Layout stylesClass="row">
-        <LoadingAnimation stylesClass="loading" shouldLoadIf={generating} />
-      </Layout>
-      <Layout stylesClass="row">
-        <CardList
-          shouldLoadIf={uploadedImages.length && !generating}
-          cards={uploadedImages}
+      </Render>
+      <Render renderIf={generatedEmojis.length}>
+        <PrimaryButton
+          stylesId="button-save"
+          handleclick={() => zipAndSaveEmojis(generatedEmojis, setErrorMessage)}
+          value={"Save As Zip"}
         />
-        <CardList
-          shouldLoadIf={generatedEmojis.length}
-          cards={generatedEmojis}
-        />
-      </Layout>
+      </Render>
+      <Render
+        renderIf={
+          !uploadedImages.length && !generatedEmojis.length && !isGenerating
+        }
+      >
+        <Layout stylesClass="row">
+          <Text stylesClass="explanation-title" text="How it works" />
+          <Text
+            stylesClass="explanation-body"
+            text="1. Upload any number of images of yourself, your friend, or anyone with their face clearly in view."
+          />
+          <Text stylesClass="explanation-body" text="2. Generate the emojis." />
+          <Text
+            stylesClass="explanation-body"
+            text="3. Save them all as a zip with one click!"
+          />
+        </Layout>
+      </Render>
+      <Render renderIf={isGenerating}>
+        <Layout stylesClass="row">
+          <LoadingAnimation stylesClass="loading" />
+        </Layout>
+      </Render>
+      <Render renderIf={uploadedImages.length && !isGenerating}>
+        <Layout stylesClass="row">
+          <CardList cards={uploadedImages} />
+        </Layout>
+      </Render>
+      <Render renderIf={generatedEmojis.length}>
+        <Layout stylesClass="row">
+          <CardList cards={generatedEmojis} />
+        </Layout>
+      </Render>
     </Layout>
   );
 }
