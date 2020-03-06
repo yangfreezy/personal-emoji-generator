@@ -1,5 +1,6 @@
-import Text from "./Text";
-import TemporaryMessage from "./TemporaryMessage";
 import Layout from "./Layout";
+import TemporaryMessage from "./TemporaryMessage";
+import PrimaryButton from "./PrimaryButton";
+import Text from "./Text";
 
-export { Text, TemporaryMessage, Layout };
+export { Layout, PrimaryButton, TemporaryMessage, Text };
