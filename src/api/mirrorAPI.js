@@ -63,7 +63,6 @@ async function generateEmojis(
       console.error(err);
     }
   }
-  console.log(emojis);
   setIsGenerating(false);
   setUploadedImages([]);
   setGeneratedEmojis(emojis);
