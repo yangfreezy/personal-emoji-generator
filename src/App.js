@@ -42,7 +42,7 @@ function App() {
       <Text stylesClass="title" text="Make An Emoji!" />
       <ImageUploader
         withIcon={true}
-        buttonText="Start"
+        buttonText="Upload"
         onChange={handleUpload}
         imgExtension={[".jpg", ".gif", ".png", ".gif"]}
         maxFileSize={5242880}
@@ -80,10 +80,10 @@ function App() {
       >
         <Layout stylesClass="row">
           <Layout stylesClass="column explanation">
-            <Text stylesClass="explanation-title" text="How it works" />
+            <Text stylesClass="explanation-title" text="How it works!" />
             <Text
               stylesClass="explanation-body"
-              text="1. Upload any number of images of yourself, your friend, or anyone with their face clearly in view."
+              text="1. Upload any number of images of anyone with their face clearly in view."
             />
             <Text
               stylesClass="explanation-body"
