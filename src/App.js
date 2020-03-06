@@ -25,10 +25,6 @@ function App() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleUpload = async images => {
-    setUploadedImages(images);
-  };
-
   useEffect(() => {
     if (!mirrorAPIToken) getMirrorAPIToken(setMirrorAPIToken);
   }, [mirrorAPIToken]);
@@ -40,7 +36,7 @@ function App() {
   return (
     <Layout stylesClass="App">
       <Text stylesClass="title" text="Make An Emoji!" />
-      <ImgUploader onchange={handleUpload} />
+      <ImgUploader onchange={async images => setUploadedImages(images)} />
       <Render renderIf={errorMessage.length}>
         <TemporaryMessage stylesClass="error-message" message={errorMessage} />
       </Render>
