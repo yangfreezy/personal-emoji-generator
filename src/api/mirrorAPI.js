@@ -45,17 +45,17 @@ async function generateEmojis(
           data: form
         }
       );
-      if (!generatedEmoji.data.face) {
+      if (generatedEmoji.data.face) {
+        emojis.push({
+          url: generatedEmoji.data.face.url,
+          id: generatedEmoji.data.face.id,
+          name: image.name.slice(0, image.name.lastIndexOf(".")) + ".png"
+        });
+      } else {
         setErrorMessage(
           `Ran into some trouble generating one of your emojis. Sorry about that!`
         );
-        continue;
       }
-      emojis.push({
-        url: generatedEmoji.data.face.url,
-        id: generatedEmoji.data.face.id,
-        name: image.name
-      });
     } catch (err) {
       setErrorMessage(
         `Ran into some trouble generating one of your emojis. Sorry about that!`

@@ -4,7 +4,7 @@ import ImageUploader from "react-images-upload";
 import { generateEmojis, getMirrorAPIToken } from "./api/mirrorAPI.js";
 import { zipAndSaveEmojis } from "./api/zipAndSaveEmojis.js";
 
-import { CardList } from "./Containers";
+import { CardList, Explanation } from "./Containers";
 import {
   Layout,
   LoadingAnimation,
@@ -34,7 +34,7 @@ function App() {
   }, [mirrorAPIToken]);
 
   useEffect(() => {
-    setTimeout(() => setErrorMessage(""), 5000);
+    setTimeout(() => setErrorMessage(""), 4000);
   }, [errorMessage]);
 
   return (
@@ -70,7 +70,7 @@ function App() {
         <PrimaryButton
           stylesId="button-save"
           handleclick={() => zipAndSaveEmojis(generatedEmojis, setErrorMessage)}
-          value={"Save As Zip"}
+          value="Save As Zip"
         />
       </Render>
       <Render
@@ -79,21 +79,7 @@ function App() {
         }
       >
         <Layout stylesClass="row">
-          <Layout stylesClass="column explanation">
-            <Text stylesClass="explanation-title" text="How it works!" />
-            <Text
-              stylesClass="explanation-body"
-              text="1. Upload any number of images of anyone with their face clearly in view."
-            />
-            <Text
-              stylesClass="explanation-body"
-              text="2. Generate the emojis."
-            />
-            <Text
-              stylesClass="explanation-body"
-              text="3. Save them all as a zip with one click!"
-            />
-          </Layout>
+          <Explanation />
         </Layout>
       </Render>
       <Render renderIf={isGenerating}>

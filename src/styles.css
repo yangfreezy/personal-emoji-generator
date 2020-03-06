@@ -80,7 +80,7 @@ body {
   background: var(--main-color);
   border-radius: 0%;
   font-family: "Century Gothic", sans-serif;
-  font-weight: bold;
+  font-weight: 550;
   margin-top: 25px;
   width: 100px;
   height: 35px;
@@ -103,18 +103,14 @@ body {
 }
 
 .explanation {
-  margin-top: 50px;
-  margin-bottom: 50px;
+  color: var(--mid-grey);
+  font-weight: lighter;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 
 .explanation-title {
-  color: var(--mid-grey);
   font-size: 20px;
-}
-
-.explanation-body {
-  color: var(--mid-grey);
-  font-size: 16px;
 }
 
 .card {
@@ -145,7 +141,8 @@ body {
 }
 
 .error-message {
-  font-size: 10px;
+  font-size: 12px;
+  font-weight: lighter;
   color: red;
   margin-top: 15px;
   margin-bottom: 15px;
