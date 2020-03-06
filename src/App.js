@@ -6,13 +6,13 @@ import { zipAndSaveEmojis } from "./api/zipAndSaveEmojis.js";
 import { CardList, Explanation } from "./Containers";
 import {
   ImgUploader,
-  Layout,
   LoadingAnimation,
   PrimaryButton,
   Render,
   TemporaryMessage,
   Text
 } from "./Components";
+import { Row, Layout } from "./Layouts";
 
 import "./styles.css";
 
@@ -72,28 +72,28 @@ function App() {
           !uploadedImages.length && !generatedEmojis.length && !isGenerating
         }
       >
-        <Layout stylesClass="row">
+        <Row>
           <Explanation />
-        </Layout>
+        </Row>
       </Render>
       <Render renderIf={isGenerating}>
-        <Layout stylesClass="row">
+        <Row>
           <LoadingAnimation stylesClass="loading" />
-        </Layout>
+        </Row>
       </Render>
       <Render renderIf={uploadedImages.length && !isGenerating}>
-        <Layout stylesClass="row">
+        <Row>
           <CardList cards={uploadedImages} />
-        </Layout>
+        </Row>
       </Render>
       <Render
         renderIf={
           generatedEmojis.length && !isGenerating && !uploadedImages.length
         }
       >
-        <Layout stylesClass="row">
+        <Row>
           <CardList cards={generatedEmojis} />
-        </Layout>
+        </Row>
       </Render>
     </Layout>
   );

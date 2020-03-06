@@ -1,6 +1,6 @@
 import React from "react";
 
-import Layout from "./Layout";
+import { Layout } from "./../Layouts";
 
 const LoadingAnimation = ({ stylesClass }) => {
   return (

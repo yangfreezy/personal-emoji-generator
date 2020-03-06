@@ -2,7 +2,8 @@ import React, { Fragment } from "react";
 
 import { Card } from "@material-ui/core";
 
-import { Layout, Text } from "./../Components";
+import { Text } from "./../Components";
+import { Layout } from "./../Layouts";
 
 const CardList = ({ cards }) => {
   return (
