@@ -9,7 +9,6 @@ import {
   LoadingAnimation,
   PrimaryButton,
   Render,
-  TemporaryMessage,
   Text
 } from "./Components";
 import { Layout, Row } from "./Layouts";
@@ -38,7 +37,7 @@ function App() {
       <Text stylesClass="title" text="Make Emojis!" />
       <ImgUploader onchange={async images => setUploadedImages(images)} />
       <Render renderIf={errorMessage.length}>
-        <TemporaryMessage stylesClass="error-message" message={errorMessage} />
+        <Text stylesClass="error-message" text={errorMessage} />
       </Render>
       <Render renderIf={uploadedImages.length && !isGenerating}>
         <PrimaryButton
