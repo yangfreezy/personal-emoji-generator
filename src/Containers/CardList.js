@@ -11,7 +11,7 @@ const CardList = ({ cards }) => {
       {cards.map(card => (
         <Card className="card" key={card.name}>
           <Layout stylesClass="card-layout">
-            <Text stylesClass="card-name" text={card.name} />
+            <Text stylesClass="card-name">{card.name} </Text>
             <img
               className="card-image"
               src={card.url || URL.createObjectURL(card)}

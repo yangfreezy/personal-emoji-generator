@@ -1,7 +1,7 @@
 import React from "react";
 
-const Text = ({ text, stylesClass }) => {
-  return <div className={stylesClass}> {text}</div>;
+const Text = ({ children, stylesClass }) => {
+  return <div className={stylesClass}> {children}</div>;
 };
 
 export default Text;

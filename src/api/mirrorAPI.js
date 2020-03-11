@@ -18,6 +18,10 @@ async function getMirrorAPIToken(setMirrorAPIToken) {
   }
 }
 
+const convertImageNameToPng = imageName => {
+  return imageName.slice(0, imageName.lastIndexOf(".")) + ".png";
+};
+
 async function generateEmojis(
   setIsGenerating,
   setUploadedImages,
@@ -26,8 +30,8 @@ async function generateEmojis(
   uploadedImages,
   mirrorToken
 ) {
-  let emojis = [];
   setIsGenerating(true);
+  let emojis = [];
   for (var image of uploadedImages) {
     let form = new FormData();
     form.append("photo", image);
@@ -49,7 +53,7 @@ async function generateEmojis(
         emojis.push({
           url: generatedEmoji.data.face.url,
           id: generatedEmoji.data.face.id,
-          name: image.name.slice(0, image.name.lastIndexOf(".")) + ".png"
+          name: convertImageNameToPng(image.name)
         });
       } else {
         setErrorMessage(

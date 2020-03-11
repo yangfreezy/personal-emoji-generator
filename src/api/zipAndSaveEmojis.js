@@ -27,7 +27,11 @@ const zipAndSaveEmojis = async (emojis, setErrorMessage) => {
       url: "http://localhost:5000/getEmojis",
       data: { emojis }
     });
-    if (res.data.error) return setErrorMessage(res.data.error);
+    if (res.data.error) {
+      return setErrorMessage(
+        "Ran into some trouble packaging your emojis! Sorry about that."
+      );
+    }
     downloadedEmojis = res.data.emojis.map(emoji => ({
       data: b64toBlob(emoji.base64),
       name: emoji.name
@@ -35,10 +39,11 @@ const zipAndSaveEmojis = async (emojis, setErrorMessage) => {
   } catch (err) {
     console.error(err);
   }
-  if (!downloadedEmojis)
+  if (!downloadedEmojis) {
     return setErrorMessage(
-      "Ran into some trouble packaging your emojis, feel free to download them manually! Sorry about that."
+      "Ran into some trouble packaging your emojis! Sorry about that."
     );
+  }
   downloadedEmojis.map(emoji => zip.file(emoji.name, emoji.data));
   const zipped = await zip.generateAsync({ type: "blob" });
   saveAs(zipped, "emojis.zip");

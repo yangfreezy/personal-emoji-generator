@@ -34,10 +34,10 @@ function App() {
 
   return (
     <Layout stylesClass="App">
-      <Text stylesClass="title" text="Make Emojis!" />
+      <Text stylesClass="title">{"Make Emojis!"} </Text>
       <ImgUploader onchange={async images => setUploadedImages(images)} />
       <Render renderIf={errorMessage.length}>
-        <Text stylesClass="error-message" text={errorMessage} />
+        <Text stylesClass="error-message">{errorMessage} </Text>
       </Render>
       <Render renderIf={uploadedImages.length && !isGenerating}>
         <PrimaryButton
