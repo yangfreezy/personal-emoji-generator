@@ -14,7 +14,7 @@ Design: <br />
 Followed a Component / Container / Layouts architecture pattern. <br />
 Components - Single/Multi Use - Only contains Layouts for styling or contains an imported component <br />
 Container - Single/Multi Use - Contains one or more components <br />
-Layouts - Styled div with children props (can be customized for more declarative syntax, ie: <Column/> or <Row/> <br />
+Layouts - Styled div with children props (can be customized for more declarative syntax, ie: Column or Row <br />
 
 Technology Used:
 create-react-app <br />
