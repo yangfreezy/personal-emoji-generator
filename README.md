@@ -12,8 +12,8 @@ Data Flow:
 
 Design: <br />
 Followed a Component / Container / Layouts architecture pattern. <br />
-Components - Single/Multi Use - Atomic units of functionality, only components contained by components are layouts or imported components  <br />
-Container - Single/Multi Use - Contains one or more components <br />
+Components - Atomic units of functionality, only components contained by components are layouts or imported components  <br />
+Container - Contains one or more components <br />
 Layouts - Styled div with children props (can be customized for more declarative syntax, ie: Column or Row) <br />
 
 Technology Used:
