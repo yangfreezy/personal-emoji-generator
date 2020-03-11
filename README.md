@@ -23,7 +23,7 @@ Components - Atomic units of functionality, only components contained by compone
 Container - Contains one or more components <br />
 Layouts - Styled div with children props (can be customized for more declarative syntax, ie: Column or Row) <br />
 
-<b> Problems circumvented </b><br />
+<b> Notable issues encountered: </b><br />
 - Could not bypass CORS client side when retrieving emojis as b64, built a simple node server using express.<br />
 - Could not directly save images so I retrieved them as B64 which easily converts to blob. <br />
 
