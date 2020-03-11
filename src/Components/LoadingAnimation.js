@@ -6,13 +6,13 @@ const LoadingAnimation = ({ stylesClass }) => {
   return (
     <Layout stylesClass="loading">
       <Layout stylesClass="circle">
-        <span className="circle__el"></span>
+        <Layout stylesClass="circle__el"></Layout>
       </Layout>
       <Layout stylesClass="circle">
-        <span className="circle__el circle__el_two"></span>
+        <Layout stylesClass="circle__el circle__el_two"></Layout>
       </Layout>
       <Layout stylesClass="circle">
-        <span className="circle__el circle__el_three"></span>
+        <Layout stylesClass="circle__el circle__el_three"></Layout>
       </Layout>
     </Layout>
   );
