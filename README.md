@@ -1,6 +1,6 @@
 An app that allows you to save AI generated emojis of your face!
 
-Input: Any number of images that includes a face, accepted filetypes: .jpg, .gif, .png
+Input: Any number of images that includes a face, accepted filetypes: .jpg, .gif, .png <br />
 Output: Zip file of emojis in png format
 
 Data Flow:
@@ -12,9 +12,9 @@ Data Flow:
 
 Design: <br />
 Followed a Component / Container / Layouts architecture pattern. <br />
-Components - Single/Multi Use - Only contains Layouts for styling or contains an imported component <br />
+Components - Single/Multi Use - Atomic units of functionality, only components contained by components are layouts or imported components  <br />
 Container - Single/Multi Use - Contains one or more components <br />
-Layouts - Styled div with children props (can be customized for more declarative syntax, ie: Column or Row <br />
+Layouts - Styled div with children props (can be customized for more declarative syntax, ie: Column or Row) <br />
 
 Technology Used:
 create-react-app <br />
