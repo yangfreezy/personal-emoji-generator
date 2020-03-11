@@ -1,5 +1,3 @@
-#EmojiGenerator
-
 An app that allows you to save AI generated emojis of your face!
 
 Input: Any number of images that includes a face, accepted filetypes: .jpg, .gif, .png
