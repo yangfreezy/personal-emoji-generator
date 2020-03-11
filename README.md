@@ -3,7 +3,7 @@ An app that allows you to save AI generated emojis of your face!
 Input: Any number of images that includes a face, accepted filetypes: .jpg, .gif, .png <br />
 Output: Zip file of emojis in png format
 
-Data Flow:
+Data Flow:<br />
 
 - On app load, Mirror AI API token is automatically retrieved. <br />
 - User uploads images and they're displayed as a list. When generate is clicked we pass the files along to Mirror AI API, then   save the URLs to later be retrieved as B64 and converted into blobs. 
@@ -16,7 +16,7 @@ Components - Atomic units of functionality, only components contained by compone
 Container - Contains one or more components <br />
 Layouts - Styled div with children props (can be customized for more declarative syntax, ie: Column or Row) <br />
 
-Technology Used:
+Technology Used:<br />
 create-react-app <br />
 react.js <br />
 node.js <br />
