@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "cors": "^2.8.5",
+    "express": "^4.17.1",
     "file-saver": "^2.0.2",
     "jszip": "^3.2.2",
     "react": "^16.7.0-alpha.2",

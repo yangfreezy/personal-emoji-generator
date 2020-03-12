@@ -1,7 +1,7 @@
 import ImgUploader from "./ImgUploader";
-import LoadingAnimation from "./LoadingAnimation";
+import Loading from "./Loading";
 import PrimaryButton from "./PrimaryButton";
 import Render from "./Render";
 import Text from "./Text";
 
-export { ImgUploader, LoadingAnimation, PrimaryButton, Render, Text };
+export { ImgUploader, Loading, PrimaryButton, Render, Text };

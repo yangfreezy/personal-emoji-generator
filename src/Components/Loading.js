@@ -2,7 +2,7 @@ import React from "react";
 
 import { Layout } from "./../Layouts";
 
-const LoadingAnimation = ({ stylesClass }) => {
+const Loading = () => {
   return (
     <Layout stylesClass="loading">
       <Layout stylesClass="circle">
@@ -18,4 +18,4 @@ const LoadingAnimation = ({ stylesClass }) => {
   );
 };
 
-export default LoadingAnimation;
+export default Loading;

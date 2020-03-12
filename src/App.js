@@ -6,7 +6,7 @@ import { zipAndSaveEmojis } from "./api/zipAndSaveEmojis.js";
 import { CardList, Explanation } from "./Containers";
 import {
   ImgUploader,
-  LoadingAnimation,
+  Loading,
   PrimaryButton,
   Render,
   Text
@@ -19,10 +19,16 @@ function App() {
   const [mirrorAPIToken, setMirrorAPIToken] = useState(
     localStorage.getItem("mirrorAPIToken") || ""
   );
+
   const [uploadedImages, setUploadedImages] = useState([]);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [isGenerating, setIsGenerating] = useState(false);
   const [generatedEmojis, setGeneratedEmojis] = useState([]);
+
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const [initialAppState, setInitialAppState] = useState(true);
+  const [imagesAreUploaded, setImagesAreUploaded] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [emojisAreGenerated, setEmojisAreGenerated] = useState(false);
 
   useEffect(() => {
     if (!mirrorAPIToken) getMirrorAPIToken(setMirrorAPIToken);
@@ -32,14 +38,28 @@ function App() {
     setTimeout(() => setErrorMessage(""), 4000);
   }, [errorMessage]);
 
+  useEffect(() => {
+    generatedEmojis.length && !isGenerating && !uploadedImages.length
+      ? setEmojisAreGenerated(true)
+      : setEmojisAreGenerated(false);
+
+    uploadedImages.length && !isGenerating
+      ? setImagesAreUploaded(true)
+      : setImagesAreUploaded(false);
+
+    !uploadedImages.length && !generatedEmojis.length && !isGenerating
+      ? setInitialAppState(true)
+      : setInitialAppState(false);
+  }, [generatedEmojis, isGenerating, uploadedImages]);
+
   return (
     <Layout stylesClass="App">
       <Text stylesClass="title">{"Make Emojis!"} </Text>
       <ImgUploader onchange={async images => setUploadedImages(images)} />
-      <Render renderIf={errorMessage.length}>
+      <Render renderIf={errorMessage}>
         <Text stylesClass="error-message">{errorMessage} </Text>
       </Render>
-      <Render renderIf={uploadedImages.length && !isGenerating}>
+      <Render renderIf={imagesAreUploaded}>
         <PrimaryButton
           stylesId="button-generate"
           value="Generate"
@@ -55,41 +75,29 @@ function App() {
           }
         />
       </Render>
-      <Render
-        renderIf={
-          generatedEmojis.length && !isGenerating && !uploadedImages.length
-        }
-      >
+      <Render renderIf={emojisAreGenerated}>
         <PrimaryButton
           stylesId="button-save"
           handleclick={() => zipAndSaveEmojis(generatedEmojis, setErrorMessage)}
           value="Save As Zip"
         />
       </Render>
-      <Render
-        renderIf={
-          !uploadedImages.length && !generatedEmojis.length && !isGenerating
-        }
-      >
+      <Render renderIf={initialAppState}>
         <Row>
           <Explanation />
         </Row>
       </Render>
       <Render renderIf={isGenerating}>
         <Row>
-          <LoadingAnimation stylesClass="loading" />
+          <Loading />
         </Row>
       </Render>
-      <Render renderIf={uploadedImages.length && !isGenerating}>
+      <Render renderIf={imagesAreUploaded}>
         <Row>
           <CardList cards={uploadedImages} />
         </Row>
       </Render>
-      <Render
-        renderIf={
-          generatedEmojis.length && !isGenerating && !uploadedImages.length
-        }
-      >
+      <Render renderIf={emojisAreGenerated}>
         <Row>
           <CardList cards={generatedEmojis} />
         </Row>
