@@ -11,7 +11,7 @@ import {
   Render,
   Text
 } from "./Components";
-import { Layout, Row } from "./Layouts";
+import { Row } from "./Layouts";
 
 import "./styles.css";
 
@@ -53,7 +53,7 @@ function App() {
   }, [generatedEmojis, isGenerating, uploadedImages]);
 
   return (
-    <Layout stylesClass="App">
+    <div className="App">
       <Text stylesClass="title">{"Make Emojis!"} </Text>
       <ImgUploader onchange={async images => setUploadedImages(images)} />
       <Render renderIf={errorMessage}>
@@ -102,7 +102,7 @@ function App() {
           <CardList cards={generatedEmojis} />
         </Row>
       </Render>
-    </Layout>
+    </div>
   );
 }
 
