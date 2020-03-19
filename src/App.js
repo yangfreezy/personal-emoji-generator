@@ -95,6 +95,5 @@ function App() {
     </div>
   );
 }
-/* States of UI: Landing, ImagesUploaded, Generating, Generated  E*/
 
 export default App;
