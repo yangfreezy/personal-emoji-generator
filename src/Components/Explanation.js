@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Text } from "./../Components";
+import { Text } from ".";
 import { Column } from "./../Layouts";
 
 const Explanation = () => {

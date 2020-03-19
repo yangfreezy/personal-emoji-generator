@@ -3,8 +3,15 @@ import React, { useState, useEffect, Fragment } from "react";
 import { generateEmojis, getAndSetMirrorAPIToken } from "./api/mirrorAPI.js";
 import { zipAndSaveEmojis } from "./api/zipAndSaveEmojis.js";
 
-import { CardList, Explanation } from "./Containers";
-import { ImgUploader, Loading, PrimaryButton, Text } from "./Components";
+import {
+  CardList,
+  ErrorMessage,
+  Explanation,
+  ImgUploader,
+  Loading,
+  PrimaryButton,
+  Title
+} from "./Components";
 import { Row } from "./Layouts";
 
 import "./styles.css";
@@ -46,14 +53,14 @@ function App() {
 
   return (
     <div className="App">
-      <Text stylesClass="title">{"Make Emojis!"} </Text>
+      <Title>{"Make Emojis!"} </Title>
       <ImgUploader onchange={async images => setUploadedImages(images)} />
       {landingState && (
         <Row>
           <Explanation />
         </Row>
       )}
-      {errorMessage && <Text stylesClass="error-message">{errorMessage} </Text>}
+      {errorMessage && <ErrorMessage>{errorMessage} </ErrorMessage>}
       {imagesUploadedState && (
         <Fragment>
           <PrimaryButton
