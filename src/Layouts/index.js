@@ -1,4 +1,4 @@
-import Column from "./Column";
-import Row from "./Row";
+import { Column } from "./Column";
+import { Row } from "./Row";
 
 export { Column, Row };

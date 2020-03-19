@@ -2,7 +2,7 @@ import React from "react";
 
 import ImageUploader from "react-images-upload";
 
-const ImgUploader = ({ onchange }) => {
+export const ImgUploader = ({ onchange }) => {
   return (
     <ImageUploader
       withIcon={true}
@@ -13,5 +13,3 @@ const ImgUploader = ({ onchange }) => {
     />
   );
 };
-
-export default ImgUploader;

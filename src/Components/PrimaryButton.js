@@ -2,7 +2,7 @@ import React from "react";
 
 import { Button } from "@material-ui/core";
 
-const PrimaryButton = ({ handleclick, stylesId, value }) => {
+export const PrimaryButton = ({ handleclick, stylesId, value }) => {
   return (
     <Button
       id={stylesId}
@@ -14,5 +14,3 @@ const PrimaryButton = ({ handleclick, stylesId, value }) => {
     </Button>
   );
 };
-
-export default PrimaryButton;
