@@ -1,5 +1,5 @@
 import React from "react";
 
-export const Title = ({ children }) => {
-  return <div className="title"> {children}</div>;
+export const Title = ({ text }) => {
+  return <div className="title"> {text} </div>;
 };

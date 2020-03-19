@@ -2,7 +2,7 @@ import React from "react";
 
 import { Button } from "@material-ui/core";
 
-export const PrimaryButton = ({ handleclick, stylesId, value }) => {
+export const PrimaryButton = ({ stylesId, handleclick, value }) => {
   return (
     <Button
       id={stylesId}

@@ -53,14 +53,14 @@ function App() {
 
   return (
     <div className="App">
-      <Title>{"Make Emojis!"} </Title>
+      <Title text="Make Emojis!" />
       <ImgUploader onchange={async images => setUploadedImages(images)} />
       {landingState && (
         <Row>
           <Explanation />
         </Row>
       )}
-      {errorMessage && <ErrorMessage>{errorMessage} </ErrorMessage>}
+      {errorMessage && <ErrorMessage message={errorMessage} />}
       {imagesUploadedState && (
         <Fragment>
           <PrimaryButton
