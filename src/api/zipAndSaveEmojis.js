@@ -2,6 +2,14 @@ import axios from "axios";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 
+/**
+ * Turns b64 data into blobs
+ * @param {String} b64Data b64 string of an image
+ * @param {String} contentType content type of blob
+ * @param {Number} sliceSize slice size of b64 string
+ * @returns  blob
+ **/
+
 const b64toBlob = (b64Data, contentType = "", sliceSize = 512) => {
   const byteCharacters = atob(b64Data);
   const byteArrays = [];
@@ -18,7 +26,15 @@ const b64toBlob = (b64Data, contentType = "", sliceSize = 512) => {
   return blob;
 };
 
-const zipAndSaveEmojis = async (emojis, setErrorMessage) => {
+/**
+ * Make API call to backend to get emoji b64 data from mirror API,
+ * then converts them into blobs and saves them to users disk.
+ * @param {Array} emojis Array of Emoji Objects
+ * @param {Function} setErrorMessage Sets error message
+ * @returns Nothing
+ **/
+
+export const zipAndSaveEmojis = async (emojis, setErrorMessage) => {
   const zip = new JSZip();
   let downloadedEmojis;
   try {
@@ -48,5 +64,3 @@ const zipAndSaveEmojis = async (emojis, setErrorMessage) => {
   const zipped = await zip.generateAsync({ type: "blob" });
   saveAs(zipped, "emojis.zip");
 };
-
-export { zipAndSaveEmojis };
